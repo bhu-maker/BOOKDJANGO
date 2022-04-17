@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="card col-lg-5 col-md-8 col-sm-12 p-3 shadow bg-warning text-light shadow rounded-3 mt-5">
+    <h1 class="card-title text-danger display-4 text-center">{{key.title}}</h1>
+    <div class="card-body text-info text-bold">
+        <p class="card-text text-center ">{{key.author}}</p>
+        <p class="card-text text-center">{{key.pages}}</p>
+        <p class="card-text text-center">{{key.price}}</p>
+    </div>
+</div>
+{%endblock content %}

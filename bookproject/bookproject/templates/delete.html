@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{%block content%}
+<div class="row justify-content-center col-lg-6 col-md-8 col-sm-12 alert-info mt-5 shadow rounded-3">
+<p class="mt-2 text-center ">Do you want to delete {{item}} ??? </p>
+{{item.id}}
+<form action="/home/del/{{item.id}}" method="POST" >
+    {%csrf_token%}
+    <div class="row justify-content-around mt-2 mb-4">
+        <!-- 
+        <a href="/home/" class="btn btn-success">confirm</a> -->
+        <button class="col-2 btn btn-success" type="submit">confirm</button>
+        <a href="/home/list" class=" col-2 btn btn-danger">cancel</a>
+    </div>
+</form>
+</div>
+{%endblock content%}

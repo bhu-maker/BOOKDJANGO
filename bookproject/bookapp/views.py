@@ -3,6 +3,11 @@ from django.shortcuts import redirect, render
 from .import models
 from .import forms
 from django.http import request
+from rest_framework.decorators import api_view
+from rest_framework import status
+from rest_framework.response import Response
+from .serializers import bookser
+
 
 
 # Create your views here.
@@ -41,3 +46,25 @@ def deleting(request,pk):
         models.bookmodel.delete(obj)
         return redirect("/home/list")
     return render(request,"delete.html",{"item":obj})
+
+@api_view(['GET'])
+def gettingall(request):
+    modvar=models.bookmodel.objects.all()
+    servar=bookser(modvar,many=True)
+    return Response(servar.data)
+
+@api_view(['POST'])    
+def postting(request):
+    servar=bookser(data=request.data)
+    if servar.is_valid():
+        servar.save()
+        return Response(servar.data,status=status.HTTP_201_CREATED)
+
+@api_view(['GET'])        
+def readgetting(request,pk):
+    modvar=models.bookmodel.objects.get(title=pk)
+    servar=bookser(modvar)
+    return Response(servar.data,status=status.HTTP_200_OK)
+
+
+    

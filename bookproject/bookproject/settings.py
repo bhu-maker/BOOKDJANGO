@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookapp',
-    'crispy_forms'
+    'crispy_forms',
+    'rest_framework',
+    'corsheaders'
 ]
 CRISPY_TEMPLATES_PACK='bootstrap4'
 MIDDLEWARE = [
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'bookproject.urls'
@@ -87,8 +90,8 @@ DATABASES = {
 
     }
 }
-
-
+ALLOWED_HOSTS=['*']
+CORS_ORIGIN_WHITELIST=['http://localhost:3000',]
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
